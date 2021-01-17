@@ -1,3 +1,31 @@
 # SafeCodable
 
-A description of this package.
+Collection of Decodable extensions to help you when JSON responses safety is not guaranteed.
+
+
+## Feature
+
+### Safe base/alternative types
+
+```swift
+struct Book: Decodable {
+    let year: Safe<Int, String>
+    let name: String
+}
+
+let rawJson = """
+[
+    {
+        "year": 1951,
+        "name": "Foundation"
+    },
+    {
+        "year": "1984",
+        "name": "Neuromancer"
+    }
+]
+"""
+let decoder = JSONDecoder()
+let books = try decoder.decode([Book].self, from: rawJson.data(using: .utf8)!)
+print(books.last?.year.value) //Optional(1984)
+```
