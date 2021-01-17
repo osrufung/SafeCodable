@@ -27,5 +27,7 @@ let rawJson = """
 """
 let decoder = JSONDecoder()
 let books = try decoder.decode([Book].self, from: rawJson.data(using: .utf8)!)
+
+print(books.first?.year.value) //Optional(1951)
 print(books.last?.year.value) //Optional(1984)
 ```
