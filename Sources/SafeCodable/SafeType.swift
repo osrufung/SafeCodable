@@ -25,3 +25,5 @@ public struct Safe<Base, Fallback: Convertible&Decodable>: Decodable where Fallb
         
     }
 }
+
+

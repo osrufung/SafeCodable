@@ -31,3 +31,24 @@ let books = try decoder.decode([Book].self, from: rawJson.data(using: .utf8)!)
 print(books.first?.year.value) //Optional(1951)
 print(books.last?.year.value) //Optional(1984)
 ```
+### Safe Date multi-format types
+
+Some responses contains multiple types of Date formatting (iOS8601 with seconds, milliseconds or single dates)
+```swift
+let rawDates = """
+[
+    { "value" : "2015-08-29T11:22:09Z"},
+    { "value" : "2015-08-29T11:22:09.129Z"},
+    { "value" : "2020-11-27"}
+
+]
+""".data(using: .utf8)
+let decoder = JSONDecoder()
+decoder.dateDecodingStrategy = .iso8601(extended: true)
+struct DateContainer: Decodable {
+    let value: Date?
+}
+
+let dates = try? decoder.decode([DateContainer].self, from: rawDates!)
+XCTAssertEqual(dates?.count, 3)
+```
