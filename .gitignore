@@ -1,5 +1,11 @@
+# OS X temporary files
 .DS_Store
-/.build
-/Packages
-/*.xcodeproj
+.Trashes
+
+# Xcode User settings
 xcuserdata/
+
+# Swift Package Manager
+Packages/
+Package.resolved
+.swiftpm
