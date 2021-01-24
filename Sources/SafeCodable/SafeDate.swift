@@ -13,7 +13,13 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
-    static func getDateFromString(_ dateString: String, includeFractions: Bool = false) -> Date? {
+    static let longFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter
+    }()
+    
+    static func getDateFromString(_ from: String, includeFractions: Bool = false) -> Date? {
         let formatter = ISO8601DateFormatter()
         var options:ISO8601DateFormatter.Options = [.withInternetDateTime,
                                    .withDashSeparatorInDate,
@@ -23,8 +29,8 @@ extension Date {
             options.insert(.withFractionalSeconds)
         }
         formatter.formatOptions = options
-        guard let date = formatter.date(from: dateString) else {
-            return shortFormatter.date(from: dateString)
+        guard let date = formatter.date(from: from) else {
+            return shortFormatter.date(from: from) ?? longFormatter.date(from: from)
         }
         return date
     }
