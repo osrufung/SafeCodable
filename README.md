@@ -41,7 +41,8 @@ let rawDates = """
 [
     { "value" : "2015-08-29T11:22:09Z"},
     { "value" : "2015-08-29T11:22:09.129Z"},
-    { "value" : "2020-11-27"}
+    { "value" : "2020-11-27"},
+    { "value" : "2019-08-03 23:59:59"}
 
 ]
 """.data(using: .utf8)
@@ -52,5 +53,5 @@ struct DateContainer: Decodable {
 }
 
 let dates = try? decoder.decode([DateContainer].self, from: rawDates!)
-XCTAssertEqual(dates?.count, 3)
+XCTAssertEqual(dates?.count, 4)
 ```
