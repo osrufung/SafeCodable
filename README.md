@@ -2,7 +2,7 @@
 
 ![Swift](https://github.com/osrufung/SafeCodable/workflows/Swift/badge.svg)
 
-Collection of Decodable extensions to help you when JSON responses safety is not guaranteed.
+Collection of Decodable extensions to help you when JSON responses safety is not guaranteed
 
 
 ## Feature
